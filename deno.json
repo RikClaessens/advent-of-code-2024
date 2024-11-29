@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "dev": "deno run --watch main.ts"
+    "aoc": "deno test --allow-read --watch --filter"
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@1"
