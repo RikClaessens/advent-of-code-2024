@@ -131,21 +131,29 @@ export const part2 = (input: string[]): number => {
   const { map, guardPos, guardDir } = parseMap(input);
 
   const loops = new Set<string>();
-  for (let dy = 0; dy < map.length; dy++) {
-    for (let dx = 0; dx < map[0].length; dx++) {
-      if (dx >= 0 && dx < map[0].length && dy >= 0 && dy < map.length) {
-        const newMap = [] as string[][];
-        map.forEach((line) => {
-          newMap.push(line.map((s) => s));
-        });
-        newMap[dy][dx] = '#';
-        const { loop } = explore(guardDir, guardPos, newMap);
-        if (loop) {
-          loops.add(`${dx},${dy}`);
-        }
+
+  const { steps } = explore(guardDir, guardPos, map);
+  const obstacles = new Set<string>();
+  steps.forEach((step) => {
+    const { x, y, dx, dy } = parseStep(step);
+    obstacles.add(`${x},${y}`);
+    obstacles.add(`${x + dx},${y + dy}`);
+  });
+
+  obstacles.forEach((obstacle) => {
+    const [x, y] = obstacle.split(',').map((s) => parseInt(s));
+    if (x >= 0 && x < map[0].length && y >= 0 && y < map.length) {
+      const newMap = [] as string[][];
+      map.forEach((line) => {
+        newMap.push(line.map((s) => s));
+      });
+      newMap[y][x] = '#';
+      const { loop } = explore(guardDir, guardPos, newMap);
+      if (loop) {
+        loops.add(`${x},${y}`);
       }
     }
-  }
+  });
 
   return loops.size;
 };
