@@ -4,6 +4,6 @@
     "aoc-input": "deno run --allow-net --allow-write --allow-env --env-file src/fetchInput.ts "
   },
   "imports": {
-    "@std/assert": "jsr:@std/assert@1"
+    "@std/assert": "jsr:@std/assert@^1.0.9"
   }
 }
