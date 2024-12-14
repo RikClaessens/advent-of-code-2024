@@ -15,6 +15,7 @@ if (day?.startsWith('day') && AOC_SESSION) {
   );
   const textData = await textResponse.text();
   const outputFile = `src/${day}/input.txt`;
-  Deno.writeFileSync(outputFile, new TextEncoder().encode(textData));
+  const data = new TextEncoder().encode(textData);
+  Deno.writeFileSync(outputFile, data.slice(0, data.length - 1));
   console.log(`🎄 Input written to ${outputFile}`);
 }

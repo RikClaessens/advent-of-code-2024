@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "aoc": "deno test --allow-read --watch src/test.ts --",
+    "aoc": "deno test --allow-read --allow-write --watch src/test.ts --",
     "aoc-input": "deno run --allow-net --allow-write --allow-env --env-file src/fetchInput.ts "
   },
   "imports": {
