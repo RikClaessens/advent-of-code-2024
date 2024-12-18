@@ -7,7 +7,7 @@ if (Deno.args[0]?.startsWith('day')) {
 
   type TestPart = {
     input: string[];
-    result: number;
+    result: number | string;
   };
 
   Deno.test(`${day} part 1`, () => {
